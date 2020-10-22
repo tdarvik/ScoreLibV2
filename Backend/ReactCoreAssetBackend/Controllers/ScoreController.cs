@@ -1,6 +1,8 @@
 ﻿using BusinessLogic.Services;
 using Contracts;
+using Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ReactCoreAssetBackend.Controllers
@@ -19,10 +21,10 @@ namespace ReactCoreAssetBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllScores()
+        public async Task<IActionResult> Get()
         {
-            // var positionsDto = await _scoreService;
-            return Ok(null);
+            var scores = await _scoreService.GetAllScores();
+            return Ok(scores);
         }
     }
 }

@@ -12,19 +12,17 @@ namespace BusinessLogic.Services
     {
         private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
-        private readonly IScoreRepository _scoreRepository;
         public ScoreService(
             IRepositoryWrapper repository,
-            IMapper mapper,
-            IScoreRepository scoreRepository)
+            IMapper mapper)
         {
             _repository = repository;
-            _scoreRepository = scoreRepository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<ScoreDto>> GetAllScores()
         {
-            var scores = await _scoreRepository.GetAllScoresAsync();
+            var scores = await _repository.Score.GetAllScoresAsync();
             return _mapper.Map<IEnumerable<ScoreDto>>(scores);
         }
     }
